@@ -1,25 +1,22 @@
-#include "Vec3.hpp"
+#ifndef COLOR_H
+#define COLOR_H
+
 #include <iostream>
-#include <SFML/Graphics/Color.hpp>
-#include <cmath>
-#include "util.h"
+#include "vec3.h"
 
-using color = Vec3;
+using color = vec3;
 
-//writing color to a buffer
-inline sf::Color toSFMLColor(const color& c){
-    double r = std::sqrt(c.getX());
-    double g = std::sqrt(c.getY());
-    double b = std::sqrt(c.getZ());
+// The color write's a single color out to the standard output stream
+void write_color(std::ostream& out, const& pixel_color){
+    auto r = pixel_color.x();
+    auto g = pixel_color.y();
+    auto b = pixel_color.z();
 
-    // sets a value from 0 - 1 for the x, y and z
-    r = clamp(r, 0.0, 0.999);
-    g = clamp(g, 0.0, 0.999);
-    b = clamp(b, 0.0, 0.999);
+    // Translate to byte range [0,255].
+    int rbyte = int(255.999 * r);
+    int gbyte = int(255.999 * g);
+    int bbyte = int(255.999 * b);
 
-    auto ir = static_cast<std::uint8_t> (255.99 * r);
-    auto ig = static_cast<std::uint8_t> (255.99 * g);
-    auto ib = static_cast<std::uint8_t> (255.99 * b);
-
-    return sf::Color(ir, ig, ib);
 }
+
+#endif

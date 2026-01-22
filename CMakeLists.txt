@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(RAYTRACER
     src/main.cpp
-    src/Renderer.cpp
-    src/Vec3.cpp
+    src/VECH3_H.hpp
+    src/color.h
 )
 
 target_include_directories(RAYTRACER

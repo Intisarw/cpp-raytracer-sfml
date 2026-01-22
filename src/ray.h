@@ -1,9 +1,29 @@
-#include "Vec3.hpp"
+#ifndef RAY_H
+#define RAY_H
+
+#include "vec3.h"
 
 
-struct Ray{
+using point3 = vec3;
+class ray{
 
-    // P(t) = origin * p(t) + direction
-    double origin;
-    double time;
-};
+    public:
+
+    point3 orig;
+    vec3 dir;
+
+    public:
+        ray(){}
+
+        // Constructor that takes an origin P(t) = A + tb
+        ray(const point3& origin, const vec3& direction) : orig(origin), dir(direction){}
+
+        const point3& origin() const {return orig;}
+        const vec3& direction() const {return dir;}
+
+        point3 at(double t) const{
+            return orig + t*dir;
+        }
+}; 
+
+#endif
